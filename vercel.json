@@ -16,19 +16,6 @@
     "REACT_APP_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im14cndldG5oYmlyamNqd216emRyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE4NDk5MjMsImV4cCI6MjA3NzQyNTkyM30.XHhKod0uAlB4i4dCNeHG9EqKnNmsThHkZIIIOyMK5ps"
   },
 
-  "routes": [
-    {
-      "src": "/static/(.*)",
-      "headers": {
-        "cache-control": "s-maxage=31536000,immutable"
-      }
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
-    }
-  ],
-
   "rewrites": [
     {
       "source": "/api/:path*",
@@ -37,6 +24,19 @@
     {
       "source": "/auth/:path*",
       "destination": "https://mxrwetnhbirjcjwmzzdr.supabase.co/auth/v1/:path*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ],
+
+  "headers": [
+    {
+      "source": "/static/(.*)",
+      "headers": [
+        { "key": "cache-control", "value": "s-maxage=31536000,immutable" }
+      ]
     }
   ]
 }
